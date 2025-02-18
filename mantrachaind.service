@@ -1,0 +1,16 @@
+[Unit]
+Description=Mantra Node
+After=network-online.target
+[Service]
+User=root
+ExecStart=/root/go/bin/cosmovisor run start --home /data
+Restart=on-failure
+RestartSec=3
+LimitNOFILE=10000
+Environment="DAEMON_NAME=mantrachaind"
+Environment="DAEMON_HOME=/data"
+Environment="DAEMON_ALLOW_DOWNLOAD_BINARIES=false"
+Environment="DAEMON_RESTART_AFTER_UPGRADE=true"
+Environment="UNSAFE_SKIP_BACKUP=true"
+[Install]
+WantedBy=multi-user.target
